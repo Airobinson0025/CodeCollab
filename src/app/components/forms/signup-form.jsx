@@ -5,29 +5,59 @@ import { Input } from '@/components/ui/input'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-const formSchema = z.object({})
-
-
+const formSchema = z.object({
+  username: z.string().min(4),
+  email: z.string().email(),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters long' }).regex(/[!@#$%^&*(),.?":{}|<>]/, { message: 'Password must contain at least one special character' }),
+  passwordConfirmation: z.string()
+}).refine((data) => {
+  return data.password === data.passwordConfirmation
+}, {
+  message: 'Passwords do not match',
+  path: ['passwordConfirmation']
+})
 
 
 const SignUpForm = () => {
 
   const form = useForm({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       username: '',
       email: '',
       password: '',
+      passwordConfirmation: ''
     }
   })
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const onSubmit = async (values) => {
+    try {
+      const response = await fetch ('/api/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: values.username,
+          email: values.email,
+          password: values.password,
+          passwordConfirmation: values.passwordConfirmation
+        })
+      })
+      if(response.ok) {
+        const data = await response.json()
+        console.log(data, { message: 'User created successfully'})
+      }
+    } catch (error) {
+      console.error(error, { message: 'An error occurred creating user' })
+    }
    }
 
   return (
     <Form {...form}>
-      <form onClick={form.handleSubmit(onSubmit)} className='space-y-7 w-full'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5 w-full'>
         <FormField
           control={form.control}
           name='username'
@@ -73,7 +103,7 @@ const SignUpForm = () => {
 
         <FormField
           control={form.control}
-          name='confirmPassword'
+          name='passwordConfirmation'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Confirm Password</FormLabel>
@@ -84,9 +114,8 @@ const SignUpForm = () => {
             </FormItem>
   )}>
         </FormField>
+        <Button type='submit' className='w-full'>Sign Up</Button>
       </form>
-
-      <Button type='submit' onClick={form.handleSubmit(onSubmit)} className='w-full'>Sign Up</Button>
     </Form>
   )
 }

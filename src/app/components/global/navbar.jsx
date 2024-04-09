@@ -7,7 +7,7 @@ const links = [
   { href: '/dashboard', label: 'Dashboard' },
   { href: '/features', label: 'Features' },
   { href: '/demo', label: 'Demo' },
-  { href: '/register', label: 'Sign Up' }
+  { href: '/sign-in', label: 'Sign In' }
 ]
 
 const Navbar = () => {
