@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "./components/providers/theme-provider";
 import SmoothScroll from "./components/providers/smooth-scroll";
 import Navbar from "./components/global/navbar";
+import AuthProvider from "./components/providers/auth-provider";
 
 
 
@@ -18,19 +19,20 @@ export default function RootLayout({ children }) {
   return (
     
     <html lang="en">
+      <AuthProvider>
       <body className={font.className}>
-        
         <ThemeProvider
           attribute='class'
           defaultTheme='dark'
           enableSystem
           disableTransitionOnChange >
           <SmoothScroll>
-            <Navbar />
+            <Navbar/>
            {children}
           </SmoothScroll>
         </ThemeProvider>
       </body>
+      </AuthProvider>
     </html>
     
   );

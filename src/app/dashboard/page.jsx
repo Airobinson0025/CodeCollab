@@ -1,13 +1,12 @@
+'use client'
 import React from 'react'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
+import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
-const Dashboard = async () => {
+const Dashboard = () => {
   
-  const session = await getServerSession(authOptions)
-  console.log(session)
+  const { data: session, status } = useSession()
   
   
   if(session) {
