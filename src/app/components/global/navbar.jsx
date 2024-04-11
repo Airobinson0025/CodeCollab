@@ -4,8 +4,11 @@ import React from 'react'
 import { ModeToggle } from './mode-toggle'
 import { useSession, signOut } from 'next-auth/react'
 
+
+
 const Navbar = () => {
   const { data: session, status } = useSession()
+  
 
   const links = session
     ? [
@@ -14,9 +17,10 @@ const Navbar = () => {
         { href: '/features', label: 'Features' },
         { href: '/blog', label: 'Blog' },
         { href: '#', label: 'Log Out', onClick: (e) => {
-          e.preventDefault
+          e.preventDefault()
           signOut()
-        } }
+        
+        }}
       ]
     : [
         { href: '/pricing', label: 'Pricing' },
