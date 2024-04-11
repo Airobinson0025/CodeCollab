@@ -6,6 +6,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
   username: z.string().min(4),
@@ -21,6 +22,8 @@ const formSchema = z.object({
 
 
 const SignUpForm = () => {
+
+  const router = useRouter()
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -49,6 +52,7 @@ const SignUpForm = () => {
       if(response.ok) {
         const data = await response.json()
         console.log(data, { message: 'User created successfully'})
+        router.push('/sign-in')
       }
     } catch (error) {
       console.error(error, { message: 'An error occurred creating user' })

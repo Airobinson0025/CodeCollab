@@ -1,11 +1,12 @@
-import { CredentialsProvider } from "next-auth/providers";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import CredentialsProvider  from "next-auth/providers/credentials";
 import prisma from "./db";
 import { compare } from "bcrypt";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+PrismaAdapter
 
 export const authOptions = {
     adapter: PrismaAdapter(prisma),
-    secret: process.env.AUTH_SECRET,
+    secret: process.env.NEXTAUTH_SECRET,
     session: {
         strategy: 'jwt'
     },
@@ -19,8 +20,8 @@ export const authOptions = {
                 username: { label: "Username", type: "text" },
                 password: { label: "Password", type: "password" }
             },
-            async authorize(credentials) {
-                if(!credentials?.username || !credentials?.password) {
+    async authorize(credentials) {
+                if(!credentials?.email || !credentials?.password || !credentials?.username) {
                     return null
                 }
                 const existingUser = await prisma.user.findUnique({
