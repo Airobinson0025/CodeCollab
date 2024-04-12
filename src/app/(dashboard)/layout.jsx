@@ -6,7 +6,6 @@ import Loading from '../components/global/loading'
 
 const Layout = ({children}) => {
     const { data: session, status } = useSession()
-
     if(status === 'loading') {
         return (
             <div>

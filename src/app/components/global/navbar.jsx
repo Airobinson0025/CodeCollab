@@ -26,7 +26,7 @@ const Navbar = () => {
       ]
     : [
         { href: '/pricing', label: 'Pricing' },
-        { href: '/dashboard', label: 'Dashboard' },
+        { href: '/workspace', label: 'Workspace' },
         { href: '/features', label: 'Features' },
         { href: '/blog', label: 'Blog' },
         { href: '/sign-in', label: 'Sign In'}
