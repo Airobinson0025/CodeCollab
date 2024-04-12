@@ -4,7 +4,7 @@ import { ThemeProvider } from "./components/providers/theme-provider";
 import SmoothScroll from "./components/providers/smooth-scroll";
 import Navbar from "./components/global/navbar";
 import AuthProvider from "./components/providers/auth-provider";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/app/components/ui/toaster";
 Toaster
 
 

@@ -3,17 +3,19 @@ import Link from 'next/link'
 import React from 'react'
 import { ModeToggle } from './mode-toggle'
 import { useSession, signOut } from 'next-auth/react'
+import { usePathname } from 'next/navigation'
+
 
 
 
 const Navbar = () => {
   const { data: session, status } = useSession()
-  
+  const pathname = usePathname()
 
   const links = session
     ? [
         { href: '/pricing', label: 'Pricing' },
-        { href: '/dashboard', label: 'Dashboard' },
+        { href: '/workspace', label: 'Workspace' },
         { href: '/features', label: 'Features' },
         { href: '/blog', label: 'Blog' },
         { href: '#', label: 'Log Out', onClick: (e) => {
@@ -31,7 +33,7 @@ const Navbar = () => {
       ];
   
   return (
-    <div className='fixed flex items-center justify-between w-full p-3 bg-transparent backdrop-blur-md'>
+    <div className={ pathname === '/workspace' ? "hidden" : 'fixed flex items-center justify-between w-full p-3 bg-transparent backdrop-blur-md'}>
         <Link href='/'>
             <h4>Code Collab</h4>
         </Link>
