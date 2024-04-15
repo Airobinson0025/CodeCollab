@@ -31,11 +31,15 @@ const Navbar = () => {
         { href: '/blog', label: 'Blog' },
         { href: '/sign-in', label: 'Sign In'}
       ];
+
+      const hrefs = links.map(link => link.href)
+      const isNavbarVisible = pathname !== '/workspace'
+
   
   return (
-    <div className={ pathname === '/workspace' ? "hidden" : 'fixed flex items-center justify-between w-full p-3 bg-transparent backdrop-blur-md'}>
+    <div className={ isNavbarVisible ? 'fixed flex items-center justify-between w-full p-3 bg-transparent backdrop-blur-md' : 'hidden'}>
         <Link href='/'>
-            <h4>Code Collab</h4>
+            <h3>Code Collab</h3>
         </Link>
 
         <nav className='flex items-center gap-8'>

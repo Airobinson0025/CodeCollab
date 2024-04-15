@@ -19,7 +19,7 @@ const Hero = () => {
         <h1>Elevate Your Collaboration <br/> With Other Developers</h1>
         <p className='max-w-xl'>Unlock the power of teamwork with Code Collab. Seamlessly share code, screens, and ideas in real-time. Revolutionize your workflow and achieve more together. Get started now!</p>
         <Link href={session ? '/workspace' : '/sign-up'} className='mt-6'>
-            <Button size='lg' className='text-md hover:scale-95 transition duration-300'>
+            <Button size='lg' variant='secondary' className='text-md hover:scale-105 border shadow-md hover:border-primary transition duration-500'>
               {session ? 'Continue to workspace' : 'Get Started with Code Collab'}
             </Button>
         </Link>

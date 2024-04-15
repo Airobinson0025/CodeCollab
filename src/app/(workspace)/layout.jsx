@@ -4,8 +4,9 @@ import WorkspaceNavbar from '../components/global/workspace-navbar'
 import { useSession } from 'next-auth/react'
 import Loading from '../components/global/loading'
 
-const Layout = ({children}) => {
+const WorkspaceLayout = ({children}) => {
     const { data: session, status } = useSession()
+
     if(status === 'loading') {
         return (
             <div>
@@ -13,15 +14,14 @@ const Layout = ({children}) => {
             </div>
         )
     }
-
   return (
     <div>
         <WorkspaceNavbar />
-        <main>
+        <div className='mx-8'>
             {children}
-        </main>
+        </div>
     </div>
   )
 }
 
-export default Layout
+export default WorkspaceLayout
