@@ -32,8 +32,8 @@ const Navbar = () => {
         { href: '/sign-in', label: 'Sign In'}
       ];
 
-      const hrefs = links.map(link => link.href)
-      const isNavbarVisible = pathname !== '/workspace'
+      
+      const isNavbarVisible = !pathname.includes('/workspace')
 
   
   return (

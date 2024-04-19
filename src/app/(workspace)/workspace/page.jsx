@@ -4,9 +4,8 @@ import { useSession } from 'next-auth/react'
 import UserWebcam from '@/app/components/global/user-webcam'
 import WebcamConnection from '@/app/components/global/webcam-connection'
 import WorkspaceHero from '@/app/components/global/workspace-hero'
-import Loading from '@/app/components/global/loading'
 import { useRouter } from 'next/navigation'
-import RecentMeetings from '@/app/components/global/recent-meetings'
+import RecentSessions from '@/app/components/global/recent-sessions'
 
 
 
@@ -42,7 +41,7 @@ const WorkspaceHome = () => {
 
       updateTime()
 
-      const intervalId = setInterval(updateTime, 60000)
+      const intervalId = setInterval(updateTime, 1000)
 
       return () => {
         clearInterval(intervalId)
@@ -60,7 +59,7 @@ const WorkspaceHome = () => {
             <h4>{formattedDate}</h4>
         </div>
            <WorkspaceHero />
-           <RecentMeetings />
+           <RecentSessions />
         
     </div>
   )

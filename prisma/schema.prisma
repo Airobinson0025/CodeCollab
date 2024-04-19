@@ -14,14 +14,16 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(cuid())
-  username      String          @unique
-  email         String          @unique
-  password      String
-  active        Boolean         @default(false)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  ActivateToken ActivateToken[]
+  id             String          @id @default(cuid())
+  username       String          @unique
+  email          String          @unique
+  password       String
+  active         Boolean         @default(false)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  ActivateToken  ActivateToken[]
+  sessions       Session[]
+  sessionMembers SessionMember[]
 }
 
 model ActivateToken {
@@ -45,3 +47,25 @@ model ActivateToken {
 //   createdAt DateTime @default(now())
 //   updatedAt DateTime @updatedAt
 // }
+
+model Session {
+  id          String          @id @default(cuid())
+  title       String
+  description String
+  online      Boolean         @default(false)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  members     SessionMember[]
+  userId      String
+  user        User            @relation(fields: [userId], references: [id])
+}
+
+model SessionMember {
+  id        String   @id @default(cuid())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
