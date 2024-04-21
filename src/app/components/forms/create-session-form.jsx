@@ -7,7 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { motion } from 'framer-motion'
-import { useSession } from 'next-auth/react'
 
 const formSchema = z.object({
     title: z.string().min(2, 'Title must be at least 2 charactes long').max(100, 'Title must be less than 50 characters'),
@@ -15,9 +14,6 @@ const formSchema = z.object({
 })
 
 const CreateSessionForm = () => {
-
-    const { data: session } = useSession()
-    const userId = session?.user?.id
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -36,8 +32,7 @@ const CreateSessionForm = () => {
                 },
                 body: JSON.stringify({
                     title: values.title,
-                    description: values.description,
-                    userId: userId
+                    description: values.description
                 })
             })
             if(response.ok) {
