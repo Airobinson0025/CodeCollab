@@ -1,52 +1,34 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { CounterClockwiseClockIcon } from '@radix-ui/react-icons'
 import RecentSessionCard from '../cards/recent-session-card';
-
-const recentSessions = [
-  {
-    id: '75229602',
-    sessionName: 'Project Management',
-    lastVisited: '2021-08-25T10:30:00',
-    participants: ['Emily', 'Alex', 'Chris', 'Michael'],
-    mission: 'Plan and coordinate project tasks and deadlines',
-    status: 'Online'
-  },
-  {
-    id: '75229603',
-    sessionName: 'Machine Learning Algorithms',
-    lastVisited: '2021-09-05T15:45:00',
-    participants: ['Sarah', 'David', 'Rachel'],
-    mission: 'Explore and implement various machine learning algorithms',
-    status: 'Offline'
-  },
-  {
-    id: '75229604',
-    sessionName: 'Data Analysis Workshop',
-    lastVisited: '2021-08-30T09:00:00',
-    participants: ['Mark', 'Olivia', 'Sophia', 'William'],
-    mission: 'Analyze and interpret complex datasets',
-    status: 'Offline'
-  },
-  {
-    id: '75229605',
-    sessionName: 'Web Development Sprint',
-    lastVisited: '2021-09-10T14:00:00',
-    participants: ['Liam', 'Ella', 'Noah'],
-    mission: 'Collaboratively build and deploy web applications',
-    status: 'Offline'
-  },
-  {
-    id: '75229606',
-    sessionName: 'Creative Writing Circle',
-    lastVisited: '2021-09-03T16:20:00',
-    participants: ['Ava', 'Logan', 'Mia', 'Jacob'],
-    mission: 'Share and critique creative writing pieces',
-    status: 'Offline'
-  }
-];
+import { motion } from 'framer-motion';
 
 
+async function getRecentSessions() {
+  const response = await fetch('/api/session', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  const data = await response.json()
+  const sessions = data.sessions
+  return {sessions}
+}
+ 
 const RecentSessions = () => {
+  const [recentSessions, setRecentSessions] = useState([])
+
+  useEffect(()=> {
+    async function fetchData() {
+      const sessions = await getRecentSessions()
+      setRecentSessions(sessions)
+    }
+    fetchData()
+  }, [])
+
+  // console.log(recentSessions)
+  
   return (
     <div>
         <div className='flex items-center gap-4'>
@@ -55,19 +37,21 @@ const RecentSessions = () => {
         </div>
         <h4 className='font-normal mt-2'>Your sessions From The Past Week</h4>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12'>
-          {recentSessions.map((session, index) => (
-            <div key={index}>
-              <RecentSessionCard
-                id={session.id}
-                sessionName={session.sessionName}
-                lastVisited={session.lastVisited}
-                participants={session.participants.join(', ')}
-                mission={session.mission}
-                status={session.status} />
-            </div>
+        <motion.div 
+          initial={{ y: 20, opacity: 0}}
+          animate={{ y: 0, opacity: 1}}
+          transition={{ ease: 'easeInOut', duration: 0.5 }}
+          className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12'>
+          {recentSessions.sessions && recentSessions.sessions.map(session => (
+            <RecentSessionCard 
+            key={session.id}
+            id={session.id} 
+            title={session.title} 
+            description={session.description} 
+            status={session.online} 
+            members={session.members} />
           ))}
-        </div>
+        </motion.div>
     </div>
   )
 }

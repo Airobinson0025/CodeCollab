@@ -5,7 +5,9 @@ import SmoothScroll from "./components/providers/smooth-scroll";
 import Navbar from "./components/global/navbar";
 import AuthProvider from "./components/providers/auth-provider";
 import { Toaster } from "@/app/components/ui/toaster";
-Toaster
+
+
+
 
 
 
@@ -17,6 +19,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+  
+
   return (
     
     <html lang="en">

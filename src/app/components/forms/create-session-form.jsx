@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
     title: z.string().min(2, 'Title must be at least 2 charactes long').max(100, 'Title must be less than 50 characters'),
@@ -14,6 +15,8 @@ const formSchema = z.object({
 })
 
 const CreateSessionForm = () => {
+
+  const router = useRouter()
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -37,7 +40,9 @@ const CreateSessionForm = () => {
             })
             if(response.ok) {
                 const data = await response.json()
+                const id = data.session.id
                 console.log('Session created successfully.', data)
+                // router.push(`workspace/sessions/${id}`)
             }
         } catch (error) {
 

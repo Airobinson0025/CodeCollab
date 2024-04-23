@@ -10,7 +10,7 @@ const workspaceLinks = [
     { href: '/workspace', label: 'Home', icon: <IoHomeSharp  /> },
     { href: '/workspace/sessions', label: 'Sessions', icon: <IoDesktopSharp /> },
     { href: '/workspace/chats', label: 'Chats', icon: <IoChatboxSharp /> },
-    { href: '/workspace/notebook', label: 'Notebook', icon: <IoPerson /> },
+    { href: '/workspace/notes', label: 'Notes', icon: <IoPerson /> },
     { href: '/workspace/profile', label: 'Profile', icon: <IoSettingsSharp /> },
 ]
 
@@ -36,7 +36,7 @@ const WorkspaceNavbar = () => {
             </ul>
         </nav>
         <div className='flex items-center gap-4'>
-            <Link href='/'>
+            <Link href='/workspace'>
                 <Button>
                     <IoHomeSharp size={18}/>
                 </Button>
