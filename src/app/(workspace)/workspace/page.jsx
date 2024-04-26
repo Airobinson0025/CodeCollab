@@ -1,8 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
-import UserWebcam from '@/app/components/global/user-webcam'
-import WebcamConnection from '@/app/components/global/webcam-connection'
 import WorkspaceHero from '@/app/components/global/workspace-hero'
 import { useRouter } from 'next/navigation'
 import RecentSessions from '@/app/components/global/recent-sessions'

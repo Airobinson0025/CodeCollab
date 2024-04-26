@@ -1,7 +1,9 @@
 'use client'
 import { useParams } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
-import LiveSession from '@/app/components/global/live-session'
+import LiveSessionInfo from '@/app/components/global/live-session'
+import { CodeCollabVideo } from '../video-player'
+
 
 const OnlineSession = () => {
   const [ onlineSession, setOnlineSession ] = useState()
@@ -33,7 +35,8 @@ const OnlineSession = () => {
   return (
     <div className='pt-36'>
         {onlineSession ? (
-          <LiveSession
+          <LiveSessionInfo
+            id={onlineSession.id}
             title={onlineSession.title}
             description={onlineSession.description}
             members={onlineSession.members.map(member => member.user.username)}
