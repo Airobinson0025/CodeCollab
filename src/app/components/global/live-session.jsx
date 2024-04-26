@@ -8,10 +8,7 @@ const LiveSessionInfo = ({id, title, description, createdAt, members }) => {
     <div>
         <h3>{title}</h3>
         <h4>{description}</h4>
-        <p>Members: {members}</p>
-        <p>Created On {formattedDate}</p>
-
-        <div className=''>
+        <div className='mt-8'>
             <CodeCollabVideo sessionId={id}/>
         </div>
     </div>

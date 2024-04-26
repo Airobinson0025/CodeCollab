@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/app/components/ui/card'
 import { Button } from '../ui/button'
 import Link from 'next/link'
@@ -7,6 +7,15 @@ import { EraserIcon } from '@radix-ui/react-icons'
 EraserIcon
 
 const RecentSessionCard = ({ id, title, description, status, members }) => {
+
+  async function deleteSession() {
+    const response = await fetch(`/api/session/${id}/delete`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
 
   return (
     <Card className='flex flex-col justify-between shadow-xl h-[200px]'>
@@ -35,7 +44,7 @@ const RecentSessionCard = ({ id, title, description, status, members }) => {
                   <Link href={`/workspace/sessions/${id}`}>
                       <Button className='hover:bg-primary hover:text-secondary transition duration-200' size='sm' variant=''>Join</Button>
                   </Link>
-                  <Button variant='secondary' size='sm' className='hover:bg-destructive hover:text-white transition duration-300'>Delete</Button>
+                  <Button onClick={deleteSession} variant='secondary' size='sm' className='hover:bg-destructive hover:text-white transition duration-300'>Delete</Button>
                 </div>
         </CardFooter>
     </Card>

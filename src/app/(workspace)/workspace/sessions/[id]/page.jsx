@@ -2,7 +2,6 @@
 import { useParams } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
 import LiveSessionInfo from '@/app/components/global/live-session'
-import { CodeCollabVideo } from '../video-player'
 
 
 const OnlineSession = () => {
