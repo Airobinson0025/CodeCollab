@@ -3,8 +3,7 @@ import { CounterClockwiseClockIcon } from '@radix-ui/react-icons';
 import RecentSessionCard from '../cards/recent-session-card';
 import { motion } from 'framer-motion';
 import NoSessions from './no-session';
-import { CircleLoader } from 'react-spinners';
-import { useSession } from 'next-auth/react';
+import { RotateLoader } from 'react-spinners';
 
 async function getRecentSessionsByUserId() {
   const response = await fetch(`/api/session/user`, {
@@ -50,14 +49,14 @@ const RecentSessions = () => {
   return (
     <div>
       <div className='flex items-center gap-4'>
-        <h1>Recent Collab Sessions</h1>
+        <h3>Recent Collab Sessions</h3>
         <CounterClockwiseClockIcon className='h-8 w-8'/>
       </div>
       <h4 className='font-normal mt-2'>Your sessions From The Past Week</h4>
 
       {loading? (
         <div className='h-[300px] flex items-center justify-center text-primary'>
-          <CircleLoader color='#6EB9A6' loading={loading} size={50} />
+          <RotateLoader color='#16a34a' loading={loading} size={10} />
         </div> // Display a loading message when data is being fetched
       ) : (
         <motion.div 

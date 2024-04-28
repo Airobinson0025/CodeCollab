@@ -45,9 +45,9 @@ const RecentSessionCard = ({ id, title, description, status, onDelete }) => {
                 </div>
                 <div className='flex items-center gap-2'>
                   <Link href={`/workspace/sessions/${id}`}>
-                      <Button className='hover:bg-primary hover:text-secondary transition duration-200' size='sm' variant=''>Join</Button>
+                      <Button size='sm' variant=''>Join</Button>
                   </Link>
-                  <Button onClick={deleteSession} variant='secondary' size='sm' className='hover:bg-destructive hover:text-white transition duration-300'>Delete</Button>
+                  <Button onClick={deleteSession} variant='secondary' size='sm' className='hover:bg-destructive hover:text-white transition duration-200'>Delete</Button>
                 </div>
         </CardFooter>
     </Card>

@@ -17,18 +17,20 @@ const Hero = () => {
     <section className='px-8 h-[700px] flex flex-col items-start justify-center'>
         <h1>Elevate Your Collaboration <br/> With Other Developers</h1>
         <p className='max-w-xl'>Unlock the power of teamwork with Code Collab. Seamlessly share code, screens, and ideas in real-time. Revolutionize your workflow and achieve more together. Get started now, or login!</p>
-        <div className='flex items-center gap-3'>
-        <Link href='/sign-up' className='mt-6'>
-            <Button size='lg' variant='primary' className='border text-md hover:scale-105 shadow-md hover:bg-primary hover:text-secondary dark:hover:text-white transition duration-300'>
-              Get Started
-            </Button>
-        </Link>
-        <Link href={session ? '/workspace' : 'sign-in'} className='mt-6'>
-            <Button size='lg' variant='' className='text-md dark:text-white hover:scale-105 transition duration-300'>
-              Sign In
-            </Button>
-        </Link>
-        </div>
+        {session? (
+          <Link href='/workspace' className='mt-6'>
+            <Button variant='secondary' className='border hover:scale-105 hover:bg-primary transition duration-200'>Continue to workspace</Button>
+          </Link>
+        ): (
+          <div className='flex items-center justify-center gap-3 mt-6'>
+            <Link href='/sign-up'>
+                <Button className='shadow-lg hover:scale-105 transition duration-200'>Get Started Now</Button>
+            </Link>
+            <Link href='/sign-in'>
+                <Button variant='secondary' className='border shadow-lg hover:scale-105 transition duration-200'>Sign In</Button>
+            </Link>
+          </div>
+        )}
     </section>
   )
 }

@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 import * as z from "zod";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { connect } from "socket.io-client";
 
 const formSchema = z.object({
     title: z.string().min(2, 'Title must be at least 2 characters long').max(200, 'Title must be less than 50 characters'),
