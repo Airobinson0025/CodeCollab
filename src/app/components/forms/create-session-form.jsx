@@ -42,7 +42,7 @@ const CreateSessionForm = () => {
                 const data = await response.json()
                 const id = data.session.id
                 console.log('Session created successfully.', data)
-                // router.push(`workspace/sessions/${id}`)
+                router.push('/workspace')
             }
         } catch (error) {
 

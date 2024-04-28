@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { CounterClockwiseClockIcon } from '@radix-ui/react-icons'
 import RecentSessionCard from '../cards/recent-session-card';
 import { motion } from 'framer-motion';
+import NoSessions from './no-session';
 
 
 async function getRecentSessions() {
@@ -41,19 +42,21 @@ const RecentSessions = () => {
           initial={{ y: 20, opacity: 0}}
           animate={{ y: 0, opacity: 1}}
           transition={{ ease: 'easeInOut', duration: 0.5 }}
-          className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12'>
-          {recentSessions.sessions && recentSessions.sessions.map(session => (
-            <RecentSessionCard 
-            key={session.id}
-            id={session.id} 
-            title={session.title} 
-            description={session.description} 
-            status={session.online} 
-            members={session.members} />
-          ))}
+          className={ recentSessions.sessions && recentSessions.sessions.length > 0 ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12' : ''}>
+          {recentSessions.sessions && recentSessions.sessions.length > 0 ? 
+            recentSessions.sessions.map((session, index) => (
+              <RecentSessionCard key={session.id}
+              id={session.id} 
+              title={session.title} 
+              description={session.description} 
+              status={session.online} 
+              members={session.members}/>
+            )) : <NoSessions/> }
         </motion.div>
     </div>
   )
 }
+
+
 
 export default RecentSessions
