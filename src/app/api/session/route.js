@@ -6,7 +6,7 @@ import { authOptions } from "@/lib/auth";
 import { connect } from "socket.io-client";
 
 const formSchema = z.object({
-    title: z.string().min(2, 'Title must be at least 2 characters long').max(100, 'Title must be less than 50 characters'),
+    title: z.string().min(2, 'Title must be at least 2 characters long').max(200, 'Title must be less than 50 characters'),
     description: z.string().min(2, 'Description msut be at leat 2 characters long').max(100, 'Description must be less than 100 characters')
 })
 

@@ -3,7 +3,6 @@ import { Button } from '@/app/components/ui/button'
 import Link  from 'next/link'
 import React from 'react'
 import { useSession } from 'next-auth/react'
-import Loading from './loading'
 
 
 
@@ -25,7 +24,7 @@ const Hero = () => {
             </Button>
         </Link>
         <Link href={session ? '/workspace' : 'sign-in'} className='mt-6'>
-            <Button size='lg' variant='' className='text-md hover:scale-105 hover:dark:text-white transition duration-300'>
+            <Button size='lg' variant='' className='text-md dark:text-white hover:scale-105 transition duration-300'>
               Sign In
             </Button>
         </Link>

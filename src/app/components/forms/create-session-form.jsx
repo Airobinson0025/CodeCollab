@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
     title: z.string().min(2, 'Title must be at least 2 charactes long').max(100, 'Title must be less than 50 characters'),
-    description: z.string().min(2, 'Ti').max(100, 'Mission must be less than 100 characters'),
+    description: z.string().min(2, 'Ti').max(200, 'Description must be less than 100 characters'),
 })
 
 const CreateSessionForm = () => {
@@ -79,7 +79,7 @@ const CreateSessionForm = () => {
             <FormItem>
               <FormLabel>Collab Session Description</FormLabel>
               <FormControl>
-                <Input placeholder='Ex. "Saas Product Brainstorm" ( Max 100 Characters )' {...field} />
+                <Input placeholder='Ex. "Saas Product Brainstorm" ( Max 200 Characters )' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
