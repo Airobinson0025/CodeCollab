@@ -1,7 +1,7 @@
 'use client'
 import { useParams } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
-import LiveSessionInfo from '@/app/components/global/live-session'
+import CurrentSession from '@/app/components/global/live-session'
 
 
 const OnlineSession = () => {
@@ -34,7 +34,7 @@ const OnlineSession = () => {
   return (
     <div className='pt-36'>
         {onlineSession ? (
-          <LiveSessionInfo
+          <CurrentSession
             id={onlineSession.id}
             title={onlineSession.title}
             description={onlineSession.description}
