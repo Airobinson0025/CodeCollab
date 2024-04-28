@@ -7,7 +7,7 @@ import { CircleLoader } from 'react-spinners';
 import { useSession } from 'next-auth/react';
 
 async function getRecentSessionsByUserId() {
-  const response = await fetch(`/api/session/`, {
+  const response = await fetch(`/api/session/user`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
