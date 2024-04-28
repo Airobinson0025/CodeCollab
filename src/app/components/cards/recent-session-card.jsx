@@ -6,7 +6,7 @@ import { FaCircle } from 'react-icons/fa6'
 import { EraserIcon } from '@radix-ui/react-icons'
 EraserIcon
 
-const RecentSessionCard = ({ id, title, description, status, members }) => {
+const RecentSessionCard = ({ id, title, description, status, onDelete }) => {
 
   async function deleteSession() {
     const response = await fetch(`/api/session/${id}/delete`, {
@@ -15,6 +15,9 @@ const RecentSessionCard = ({ id, title, description, status, members }) => {
         'Content-Type': 'application/json'
       }
     })
+    if(response.ok) {
+      onDelete(id)
+    }
   }
 
   return (

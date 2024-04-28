@@ -14,7 +14,7 @@ import { useSession } from 'next-auth/react';
   const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY;
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiY2x1enRhY2JsMDAwMHN5bWw2ZWFhMWV0OCJ9.0SrRXrF_UXzkiYzJWRMcMsmn1O5_K8BNLBRCjo9gROw';
   
-  export const CodeCollabVideo = ({ sessionId }) => {
+  export const CollaboratorVideo = ({ sessionId }) => {
 
     const session = useSession();
     const [client, setClient ] = useState(null)

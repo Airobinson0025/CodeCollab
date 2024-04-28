@@ -29,6 +29,16 @@ const RecentSessions = () => {
   }, [])
 
   // console.log(recentSessions)
+
+  const handleDeleteSession = (sessionId) => {
+    setRecentSessions((prevSessions) => {
+      if(Array.isArray(prevSessions.sessions)) {
+        return {
+          sessions: prevSessions.sessions.filter(session => session.id !== sessionId)
+        }
+      }
+    })
+  }
   
   return (
     <div>
@@ -50,7 +60,8 @@ const RecentSessions = () => {
               title={session.title} 
               description={session.description} 
               status={session.online} 
-              members={session.members}/>
+              members={session.members}
+              onDelete={handleDeleteSession}/>
             )) : <NoSessions/> }
         </motion.div>
     </div>
