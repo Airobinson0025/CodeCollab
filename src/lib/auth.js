@@ -2,7 +2,7 @@ import CredentialsProvider  from "next-auth/providers/credentials";
 import prisma from "./db";
 import { compare } from "bcrypt";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-PrismaAdapter
+import { getServerSession } from "next-auth";
 
 export const authOptions = {
     adapter: PrismaAdapter(prisma),
@@ -79,4 +79,8 @@ export const authOptions = {
             }
         }
     }
+}
+
+export function getSession() {
+    return getServerSession(authOptions)
 }

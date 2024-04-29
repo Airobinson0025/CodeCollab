@@ -39,6 +39,7 @@ const OnlineSession = () => {
             title={onlineSession.title}
             description={onlineSession.description}
             members={onlineSession.members.map(member => member.user.username)}
+            status={onlineSession.online}
             createdAt={onlineSession.createdAt}
             updatedAt={onlineSession.updatedAt}
           />

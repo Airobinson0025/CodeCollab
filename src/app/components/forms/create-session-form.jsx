@@ -9,9 +9,13 @@ import { Button } from '../ui/button'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 
+
+
 const formSchema = z.object({
     title: z.string().min(2, 'Title must be at least 2 charactes long').max(100, 'Title must be less than 50 characters'),
     description: z.string().min(2, 'Ti').max(200, 'Description must be less than 100 characters'),
+    repo: z.string().url('Please enter a valid URL'),
+    language: z.string().min(2, 'Please enter a valid programming language').max(50, 'Language must be less than 50 characters')
 })
 
 const CreateSessionForm = () => {
@@ -23,6 +27,8 @@ const CreateSessionForm = () => {
         defaultValues: {
             title: '',
             description: '',
+            repo: '',
+            language: ''
         }
     })
 
@@ -35,12 +41,13 @@ const CreateSessionForm = () => {
                 },
                 body: JSON.stringify({
                     title: values.title,
-                    description: values.description
+                    description: values.description,
+                    repo: values.repo,
+                    language: values.language
                 })
             })
             if(response.ok) {
                 const data = await response.json()
-                const id = data.session.id
                 console.log('Session created successfully.', data)
                 router.push('/workspace')
             }
@@ -58,7 +65,7 @@ const CreateSessionForm = () => {
             animate={{ y: 0, opacity: 1}}
             transition={{ ease: 'easeInOut', duration: 0.5 }} 
             onSubmit={form.handleSubmit(onSubmit)} 
-            className='flex flex-col p-8 border rounded-md gap-7'>
+            className='flex flex-col p-8 border rounded-md gap-7 shadow-lg'>
         <h3>Create a New Collab Session</h3>
         <FormField
           control={form.control}
@@ -84,6 +91,32 @@ const CreateSessionForm = () => {
               <FormMessage />
             </FormItem>
   )} />
+
+        <FormField
+          control={form.control}
+          name='repo'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Github Repo</FormLabel>
+              <FormControl>
+                <Input placeholder='Enter a repo URL' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+  )     } />
+
+        <FormField
+          control={form.control}
+          name='language'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Programming Language</FormLabel>
+              <FormControl>
+                <Input placeholder='Ex. Javascript' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+        )} />
         <Button type='submit'>Create New Session</Button>
         </motion.form>
     </Form>

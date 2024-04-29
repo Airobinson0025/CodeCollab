@@ -4,9 +4,12 @@ import * as z from "zod";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
+
 const formSchema = z.object({
     title: z.string().min(2, 'Title must be at least 2 characters long').max(200, 'Title must be less than 50 characters'),
-    description: z.string().min(2, 'Description msut be at leat 2 characters long').max(100, 'Description must be less than 100 characters')
+    description: z.string().min(2, 'Description msut be at leat 2 characters long').max(100, 'Description must be less than 100 characters'),
+    repo: z.string().url('Please enter a valid URL'),
+    language: z.string().min(2, 'Please enter a valid programming language').max(50, 'Language must be less than 50 characters')
 })
 
 // create a new session
@@ -22,13 +25,15 @@ export async function POST( req ) {
 
     try {
         const body = await req.json()
-        const { title, description } = formSchema.parse(body)
+        const { title, description, repo, language } = formSchema.parse(body)
         
         
         const newSession = await prisma.session.create({
             data: {
                 title,
                 description,
+                repo,
+                language,
                 user: {
                     connect: {
                         id: userId // Connect the user by their id 

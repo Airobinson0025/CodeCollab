@@ -3,14 +3,14 @@ import React from 'react'
 import { Button } from '../ui/button'
 
 
-const CurrentSession = ({id, title, description, createdAt}) => {
+const CurrentSession = ({id, title, description, createdAt, status}) => {
     const formattedDate = new Date(createdAt).toLocaleDateString()
   return (
     <div>
         <h3>{title}</h3>
-        <h4>{description}</h4>
+        <h4>{status === true ? 'Online' : 'Offline'}</h4>
         <div className='mt-8'>
-            {/* <CollaboratorVideo sessionId={id}/> */}
+            <CollaboratorVideo sessionId={id}/>
         </div>
     </div>
   )

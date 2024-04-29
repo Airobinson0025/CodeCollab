@@ -30,7 +30,7 @@ const DeleteSessionAlert = ({id, onDelete}) => {
   return (
     <AlertDialog>
         <AlertDialogTrigger aschild>
-            <Button variant='secondary' size='sm' className='hover:bg-destructive transition duration-200'>Delete</Button>
+            <Button variant='secondary' size='sm' className='hover:bg-destructive hover:text-white transition duration-200'>Delete</Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogHeader>
