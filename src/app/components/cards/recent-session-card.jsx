@@ -4,21 +4,11 @@ import { Button } from '../ui/button'
 import Link from 'next/link'
 import { FaCircle } from 'react-icons/fa6'
 import { EraserIcon } from '@radix-ui/react-icons'
+import DeleteSessionAlert from '../alerts/delete-session-alert'
 EraserIcon
 
 const RecentSessionCard = ({ id, title, description, status, onDelete }) => {
 
-  async function deleteSession() {
-    const response = await fetch(`/api/session/${id}/delete`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    if(response.ok) {
-      onDelete(id)
-    }
-  }
 
   return (
     <Card className='flex flex-col justify-between shadow-xl h-[200px]'>
@@ -47,7 +37,7 @@ const RecentSessionCard = ({ id, title, description, status, onDelete }) => {
                   <Link href={`/workspace/sessions/${id}`}>
                       <Button size='sm' variant=''>Join</Button>
                   </Link>
-                  <Button onClick={deleteSession} variant='secondary' size='sm' className='hover:bg-destructive hover:text-white transition duration-200'>Delete</Button>
+                  <DeleteSessionAlert id={id} onDelete={onDelete}/>
                 </div>
         </CardFooter>
     </Card>

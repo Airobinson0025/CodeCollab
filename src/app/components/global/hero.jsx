@@ -19,15 +19,15 @@ const Hero = () => {
         <p className='max-w-xl'>Unlock the power of teamwork with Code Collab. Seamlessly share code, screens, and ideas in real-time. Revolutionize your workflow and achieve more together. Get started now, or login!</p>
         {session? (
           <Link href='/workspace' className='mt-6'>
-            <Button variant='secondary' className='border hover:scale-105 hover:bg-primary transition duration-200'>Continue to workspace</Button>
+            <Button variant='secondary' className='text-md shadow-lg border hover:scale-105 hover:bg-primary hover:text-white transition duration-200'>Continue to workspace</Button>
           </Link>
         ): (
           <div className='flex items-center justify-center gap-3 mt-6'>
             <Link href='/sign-up'>
-                <Button className='shadow-lg hover:scale-105 transition duration-200'>Get Started Now</Button>
+                <Button className='text-md shadow-lg hover:scale-105 transition duration-200'>Get Started Now</Button>
             </Link>
             <Link href='/sign-in'>
-                <Button variant='secondary' className='border shadow-lg hover:scale-105 transition duration-200'>Sign In</Button>
+                <Button variant='secondary' className=' text-md border shadow-lg hover:scale-105 transition duration-200'>Sign In</Button>
             </Link>
           </div>
         )}
