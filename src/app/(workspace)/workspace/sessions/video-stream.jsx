@@ -51,7 +51,7 @@ import { useSession } from 'next-auth/react';
 
     return client && call && (
       <StreamVideo client={client}>
-        <StreamTheme>
+        <StreamTheme as="main" className="text-white">
         <StreamCall call={call}>
             <SpeakerLayout />
             <CallControls />
